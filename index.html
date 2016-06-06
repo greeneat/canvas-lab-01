@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Lab 01 : HTML5 Canvas Drawing</title>
+</head>
+<body>
+    <canvas id="canvasId1" width="165" height="155"></canvas>
+    <canvas id="canvasId2" width="578" height="400"></canvas>
+</body>
+<script>
+    drawobj(document.getElementById('canvasId1').getContext("2d"));
+    drawghost(document.getElementById('canvasId2').getContext("2d"));
+    function drawghost(obj){
+	
+        // Dimensions of the triangle
+        var context = obj
+        var width = 155;
+        var height = 155;
+        var padding = 20;
+        var primaryColor = "#FFFFFF";
+        var secondaryColor = "#EEEEEE";
+        var lineWidth = 10;
+            
+        context.beginPath();
+        context.moveTo(100, 300);
+        context.bezierCurveTo(0, 50, 250, 50, 150, 250);
+        context.bezierCurveTo(150, 350, 120, 350, 100, 300);
+        /*context.bezierCurveTo(430, 40, 370, 30, 340, 50);
+        context.bezierCurveTo(320, 5, 250, 20, 250, 50);
+        context.bezierCurveTo(200, 5, 150, 20, 170, 80);
+        context.closePath();
+        context.lineWidth = 0;/*
+        
+        // Create fill gradient
+        /*var gradient = context.createLinearGradient(0,0,0,height);
+        gradient.addColorStop(0, primaryColor);
+        gradient.addColorStop(1, secondaryColor);*/
+    
+        context.fillStyle = '#FFFFFF';
+        context.fill();
+        
+        context.strokeStyle = '#333';
+        context.stroke();
+        
+        context.beginPath();
+        context.moveTo(130, 150);
+        context.bezierCurveTo(130, 140, 150, 140, 150, 150);
+        context.bezierCurveTo(150, 180, 130, 180, 130, 150);
+        
+        context.fillStyle = '#FFFFFF';
+        context.fill();
+        
+        context.strokeStyle = '#333';
+        context.stroke();
+        
+        context.beginPath();
+        context.moveTo(90, 150);
+        context.bezierCurveTo(90, 140, 110, 140, 110, 150);
+        context.bezierCurveTo(110, 180, 90, 180, 90, 150);
+        
+        context.fillStyle = '#FFFFFF';
+        context.fill();
+        
+        context.strokeStyle = '#333';
+        context.stroke();
+        
+        context.beginPath();
+        context.arc(97,160,3,0,2*Math.PI);
+        context.fillStyle = '#000000';
+        context.fill();
+        
+        context.beginPath();
+        context.arc(137,160,3,0,2*Math.PI);
+        context.fillStyle = '#000000';
+        context.fill();
+        
+        context.beginPath();
+        context.moveTo(90, 200);
+        context.bezierCurveTo(100, 210, 130, 220, 150, 180);
+        context.bezierCurveTo(140, 220, 100, 250, 95, 205);
+        context.fillStyle = '#FFFFFF';
+        context.fill();
+        
+        context.strokeStyle = '#333';
+        context.stroke();
+    
+    }
+    
+    function drawobj(obj){
+	
+    // Dimensions of the triangle
+    var context = obj
+    var width = 125;
+    var height = 100;
+    var padding = 20;
+    var primaryColor = "#ffc821";
+    var secondaryColor = "#faf100";
+    var lineWidth = 5;
+        
+    // Create a triangluar path
+    context.beginPath();
+    context.moveTo(padding + width/2, padding);
+    context.lineTo(padding + width, height + padding);
+    context.lineTo(padding, height + padding);
+    context.closePath();
+        
+    // Create fill gradient
+    var gradient = context.createLinearGradient(0,0,0,height);
+    gradient.addColorStop(0, primaryColor);
+    gradient.addColorStop(1, secondaryColor);
+        
+    // Add a shadow around the object
+    context.shadowBlur = 2;
+    context.shadowColor = "black";
+        
+    // Stroke the outer outline
+    context.lineWidth = lineWidth * 2;
+    context.lineJoin = "round";	
+    context.strokeStyle = gradient;
+    context.stroke();
+        
+    // Turn off the shadow, or all future fills will have shadows
+    context.shadowColor = "transparent";
+        
+    // Fill the path
+    context.fillStyle = gradient;
+    context.fill();
+        
+    // Stroke the inner outline
+    context.lineWidth = lineWidth;
+    context.lineJoin = "round";	
+    context.strokeStyle = "#333";
+    context.stroke();
+
+    // Draw the text exclamation point
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.font = "bold 60px 'Times New Roman', Times, serif";
+    context.fillStyle = "#333";
+    try{
+    context.fillText("!", padding + width/2, padding + height/1.5);
+    }catch(ex){}
+    }
+</script>
+</html>
